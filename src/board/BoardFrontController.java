@@ -78,6 +78,46 @@ public class BoardFrontController extends HttpServlet {
 			viewPage = "boardRead.jsp";
 		}
 		
+		// 글 수정 비밀번호 확인 화면 제공
+		if(cmdURI.equals("/boardUpdatePassword.bbs")){
+			cmd = new BoardUpdatePasswordCmd();
+			cmd.execute(request, response);
+			viewPage = "boardUpdatePassword.jsp";
+		}
+		
+		// 글 수정 비밀번호 확인 처리
+		if(cmdURI.equals("/boardUpdateCheck.bbs")){
+			cmd = new BoardUpdateCheckCmd();
+			cmd.execute(request, response);
+			
+			BoardUpdateCheckCmd checkCmd = (BoardUpdateCheckCmd) cmd;
+			if(checkCmd.password_check){
+				viewPage = "boardUpdateForm.bbs";
+			}else{
+				viewPage = "boardUpdateError.bbs";
+			}
+			
+		}
+		
+		// 글 수정 비밀번호 오류 화면 제공
+		if(cmdURI.equals("/boardUpdateError.bbs")){
+			viewPage = "boardUpdateError.jsp";
+		}
+		
+		// 글 수정 화면 제공
+		if(cmdURI.equals("/boardUpdateForm.bbs")){
+			cmd = new BoardUpdateFormCmd();
+			cmd.execute(request, response);
+			viewPage = "boardUpdateForm.jsp";
+		}
+		
+		// 글 수정 처리
+		if(cmdURI.equals("/boardUpdate.bbs")){
+			cmd = new BoardUpdateCmd();
+			cmd.execute(request, response);
+			viewPage = "boardList.jsp";
+		}
+		
 		RequestDispatcher dis = request.getRequestDispatcher(viewPage);
 		dis.forward(request, response);
 		
