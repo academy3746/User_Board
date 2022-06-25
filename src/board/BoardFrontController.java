@@ -132,6 +132,8 @@ public class BoardFrontController extends HttpServlet {
   			
   			BoardDeleteCheckCmd checkCmd = (BoardDeleteCheckCmd) cmd;
   			if (checkCmd.password_check && checkCmd.reply_check){
+  				// 비밀번호가 일치할 것!
+  				// 답글이 달려있으면 삭제 못하게 할 것!
   				viewPage = "boardDelete.bbs";				
   			} else {
   				viewPage = "boardDeleteError.bbs";
@@ -148,6 +150,13 @@ public class BoardFrontController extends HttpServlet {
   			cmd = new BoardDeleteCmd();
   			cmd.execute(request, response);
   			viewPage = "boardList.bbs";
+  		}
+  		
+  		// 글 검색 처리
+  		if(cmdURI.equals("/boardSearch.bbs")){
+  			cmd = new BoardSearchCmd();
+  			cmd.execute(request, response);
+  			viewPage = "boardSearchList.jsp";
   		}
   		
         RequestDispatcher dis = request.getRequestDispatcher(viewPage);

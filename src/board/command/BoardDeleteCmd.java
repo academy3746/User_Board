@@ -1,7 +1,6 @@
 package board.command;
 
 import javax.servlet.http.*;
-
 import board.model.*;
 
 public class BoardDeleteCmd implements BoardCmd{

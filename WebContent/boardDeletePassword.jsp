@@ -10,7 +10,7 @@
 	<form action="boardDeleteCheck.bbs" method="post">
 		<input type="password" name="password">
 		<input type="hidden" name="num" value="${num}">
-		<input type="submit" value="입력">
+		<input type="submit" value="입력"/>
 	</form>
 </body>
 </html>
